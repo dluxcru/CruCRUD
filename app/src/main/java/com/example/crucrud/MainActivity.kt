@@ -1,11 +1,18 @@
 package com.example.crucrud
 
+import android.location.Address
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import io.realm.Realm
+import io.realm.RealmList
+import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
+
+            Realm.init(this)
         }
     }
 
@@ -34,5 +43,20 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+    fun realmStuff(){
+        val scsu = Address()
+        scsu.lineOne = "720 4th Ave S"
+        scsu.city = "St. Cloud"
+        scsu.state = "MN"
+        scsu.zip = "56301"
+
+        val person = Person()
+        person.name = "D'Lux Cru"
+
+        realm = Realm.getDefaultInstance()
+
+        val addresses = realm.where<Address>().equals("city", "St.Cloud").findAll()
+
     }
 }

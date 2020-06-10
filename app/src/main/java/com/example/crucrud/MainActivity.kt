@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import io.realm.Realm
+import io.realm.RealmConfiguration
 import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
@@ -26,6 +27,12 @@ class MainActivity : AppCompatActivity() {
                     .setAction("Action", null).show()
 
             Realm.init(this)
+            val config = RealmConfiguration.Builder()
+                .name("Contacts.db")
+                .deleteRealmIfMigrationNeeded()
+                .schemaVersion(0)
+                .build()
+            Realm.setDefaultConfiguration(config)
         }
     }
 
@@ -54,9 +61,7 @@ class MainActivity : AppCompatActivity() {
         val person = Person()
         person.name = "D'Lux Cru"
 
-        realm = Realm.getDefaultInstance()
-
-        val addresses = realm.where<Address>().equals("city", "St.Cloud").findAll()
+       val realm = Realm.getDefaultInstance()
 
     }
 }

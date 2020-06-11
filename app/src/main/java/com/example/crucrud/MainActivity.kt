@@ -1,5 +1,6 @@
 package com.example.crucrud
 
+import android.content.Intent
 import android.location.Address
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -31,7 +32,10 @@ class MainActivity : AppCompatActivity() {
         contactsRV = findViewById(R.id.contactsRV)
 
         // set OnClickListener(s)
-        addPerson.setOnClickListener{}
+        addPerson.setOnClickListener{
+            startActivity(Intent(this, AddPersonActivity::class.java))
+            finish()
+        }
 
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->

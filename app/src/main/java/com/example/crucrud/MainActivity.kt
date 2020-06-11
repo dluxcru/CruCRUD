@@ -7,6 +7,7 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.RecyclerView
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.RealmList
@@ -16,11 +17,22 @@ import io.realm.annotations.PrimaryKey
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var addPerson: FloatingActionButton
+    private lateinit var contactsRV: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //Init the GUI components
+
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
+
+        addPerson = findViewById(R.id.addPerson)
+        contactsRV = findViewById(R.id.contactsRV)
+
+        // set OnClickListener(s)
+        addPerson.setOnClickListener{}
+
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)

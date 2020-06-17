@@ -17,7 +17,7 @@ class AddPersonActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         // init GUI
         setContentView(R.layout.activity_add_person)
-        addPersonED = findViewById(R.id.addPerson)
+        addPersonED = findViewById(R.id.name_EditText)
         createButton = findViewById(R.id.createButton)
         realm = Realm.getDefaultInstance()
         // add onClickListener
@@ -32,7 +32,7 @@ class AddPersonActivity : AppCompatActivity() {
     private fun createPerson() {
         try {
             realm.beginTransaction()
-            val currentIdNumber: Number? = realm.where(Person.class.java).max("id")
+            val currentIdNumber: Number? = realm.where(Person::class.java).max("id")
             val nextID:Int
             nextID = if (currentIdNumber == null){ 1 } else {currentIdNumber.toInt() + 1}
 
